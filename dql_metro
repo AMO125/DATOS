@@ -1,0 +1,187 @@
+---Ej A
+/*Nótese que al contar con estaciones únicas, usar distinct en el conteo no es necesario*/
+select
+    l.NombreLinea,
+    count(*) as Numero_Estaciones
+from Pertenecer p join Linea l on p.NumeroLinea = l.NumeroLinea
+group by l.NombreLinea, l.NumeroLinea
+order by l.NumeroLinea;
+
+--Ej B
+select  c.*, con.HoraInicio,
+con.HoraFin, con.Fecha
+from conductor c join Conducir con on c.CURP = con.CURP
+where con.HoraInicio between '05:00:00' and '12:00:00' and 
+con.HoraFin between '05:00:00' and '12:00:00' and
+extract(quarter from con.Fecha) = 1;
+
+--Ej C
+select t.idtren, t.numerolinea, t.marca, h.idhangar, h.numeroestacion, r.fechainicio, r.fechafin
+from reservar r join tren t on r.idtren = t.idtren
+join hangar h on r.idhangar = h.idhangar
+where r.fechainicio = '2023-11-03';
+
+--Ej D
+select c.CURP, c.Nombre, c.Paterno,
+c.Materno, c.Sexo, c.Estado, c.Nacimiento, extract(year from age(current_date, c.Nacimiento)) edad,
+t.IDTren, l.NumeroLinea, l.NombreLinea
+from Conductor c join Conducir cd on c.CURP = cd.CURP join Tren t on cd.IDTren = t.IDTren join Linea l 
+	 on t.NumeroLinea = l.NumeroLinea
+where l.NumeroLinea % 2 = 1 and extract(year from age(current_date, c.Nacimiento)) between 40 and 50
+order by c.Nombre, l.NumeroLinea;
+
+---Ej E
+select e.*
+from Estacion e join Acceso a on e.NumeroEstacion = a.NumeroEstacion
+where e.HoraApertura = a.HoraApertura and e.HoraCierre = a.HoraCierre;
+
+--Ej F 
+select c.CURP, c.Nombre, c.Paterno, c.Materno, c.Sexo, c.Salario, c.Nacimiento, t.IDTren, t.Marca
+from Conductor c join Conducir con on c.CURP = con.CURP left join tren t on con.IDTren = t.IDTren
+left join Reservar r on t.IDTren = r.IDTren
+where c.Sexo = 'F' 
+and c.Salario between 10500 and 11500 
+and r.FechaInicio <= current_date and r.FechaFin >= current_date 
+and not exists (select 1 from Conducir con2 where con2.CURP = c.CURP
+and current_date between con2.Fecha AND con2.Fecha)
+order by c.Nombre;
+
+--Ej G 
+select 
+sum(least(r.FechaFin, '2023-12-31') - greatest(r.FechaInicio, '2023-01-01') + 1) as DiasEnReparacion
+from Tren t
+join Reservar r on t.IDTren = r.IDTren
+join Linea l on t.NumeroLinea = l.NumeroLinea
+where l.NumeroLinea % 2 = 0 and r.FechaInicio <= '2023-12-31'
+and r.FechaFin >= '2023-01-01';
+
+--Ej H 
+Select c.CURP, c.Nombre, c.Paterno, c.Materno, c.Sexo, c.Salario, c.Nacimiento, c.Estado
+from Conductor c left join Conducir con on c.CURP = con.CURP
+where con.IDTren is null and lower(c.Paterno) = 'martínez' or lower(paterno)='martinez';
+ 
+
+-- Ej. I
+-- Puesto que solo nos pide reunir información en común entre las tablas 
+-- conectar y servicio usamos un natural join
+select nombreservicio, tipo, estacion.*
+from conectar natural join servicio natural join estacion
+order by numeroestacion;
+
+
+-- Ej. J
+select b.*,a.IDTren, a.marca
+from tren a join reservar b on a.idtren=b.idtren
+where lower(a.marca)='alstom' and extract (year from b.FechaInicio) in (2022);
+
+--Ej K 
+select c.*, con.turno
+from Conductor c join Conducir con on c.CURP = con.CURP
+where c.Sexo = 'F' and con.Turno = 'M' 
+except
+select c.*, con.turno
+from Conductor c join Conducir con on c.CURP = con.CURP
+where c.Sexo = 'F' and con.Turno = 'V' 
+
+-- Ej. L
+
+select Numerolinea, Marca, Estatus,
+       count(IDTren) "Total trenes"
+from tren
+group by Numerolinea, Marca, Estatus  -- Los grupos que pide el ejercicio
+order by Numerolinea, Marca, Estatus
+
+-- Ej. M
+
+select *
+from hangar natural join reservar
+where hangar.NumeroEstacion % 2 = 1
+order by hangar
+
+-- Ej. N
+
+select *
+from Estacion natural left join Hangar
+where IDHangar is null
+
+---Ej O
+select Estado, Sexo, count(*) as NumeroConductores
+from Conductor
+where date_part('year',age(Nacimiento)) < 30
+group by Estado, Sexo
+order by Estado;
+
+--Ej P
+select ctor.*, --turno, marca
+from conductor ctor join conducir cir on ctor.CURP = cir.CURP join tren t on cir.idtren=t.idtren
+where lower(marca)='bombardier' and turno = 'V'
+intersect
+select ctor.*, turno, marca
+from conductor ctor join conducir cir on ctor.CURP = cir.CURP join tren t on cir.idtren=t.idtren
+where lower(marca)='bombardier' and turno = 'N'
+
+--Ej R
+--Trenes que tengan 9 vagones que sean de la marca CONCARRIL.*/
+select *
+from tren 
+where vagones = 9 and lower(marca) = 'concarril'
+
+---Ej Q
+select *, to_char(salario, 'LFM999,999.00') salario_formato
+from conductor
+where (nombre ilike '%Alonso%' or paterno ilike '%Alonso%' or materno ilike '%Alonso%') 
+	   and salario > (select AVG(salario) from conductor);
+	   
+--Ej R
+select * 
+from tren
+where vagones = 9 and lower(marca) = 'concarril'
+
+/*Ej S 
+Información de los conductores que manejen trenes con año de fabricación posterior al 2021.*/
+
+select a.* --, anofabrica
+from conductor a join conducir b on a.curp = b.curp join tren c on b.idtren = c.idtren
+where anofabrica>2021;
+
+--- Ej T
+select curp, nombre, paterno, materno
+from conductor
+where paterno ~* '^[ADGJLPR]'
+order by paterno;
+
+/*Ej U
+Obtener la información de los trenes al día 03 de noviembre de 2023 no hayan salido de reparación.*/
+select tren.*
+from tren natural join reservar 
+where FechaFin >= 2023-11-03
+
+/* Ej V
+Un reporte que indique el número de reparaciones que han tenido los trenes, por marca.*/
+select Marca, count(*)
+from tren natural join reservar 
+group by Marca
+
+
+--- Ej W 
+update conductor
+set Salario = salario * 1.10
+where date_part('year',
+Age(Nacimiento)) = 50; 
+
+/*Ej X
+Borrar toda la información de los trenes de la marca BOMBARDIER que tengan más de 30 años de servicio.*/
+delete from tren
+where extract(year from age(aniofabrica)) >30 and lower(marca) = 'bombardier'
+
+/*Ej Y
+Insertar una flota de 10 trenes de la marca Construcciones y Auxiliar de Ferrocarriles (CAF) 
+que fueron construidos en 2023 y que serán distribuidos de manera equitativa en las líneas A y B.*/
+insert into tren
+values (229988, 10, 'Construcciones', true, 9, 2023), (189902, 10, 'Construcciones', true, 8, 2023),
+       (309412, 10, 'Construcciones', true, 8, 2023), (529472, 10, 'Construcciones', true, 7, 2023),
+	   (719443, 10, 'Construcciones', true, 9, 2023), (811045, 11, 'Auxiliar de Ferrocarriles (CAF)', true, 9, 2023),
+	   (821785, 11, 'Auxiliar de Ferrocarriles (CAF)', true, 8, 2023),
+	   (123455, 11, 'Auxiliar de Ferrocarriles (CAF)', true, 9, 2023),
+	   (909844, 11, 'Auxiliar de Ferrocarriles (CAF)', true, 8, 2023),
+	   (241737, 11, 'Auxiliar de Ferrocarriles (CAF)', true, 7, 2023);
