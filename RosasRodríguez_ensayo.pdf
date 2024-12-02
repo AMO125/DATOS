@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage[letterpaper, left=3cm, right=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}%paquete para acentos
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amscd}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[spanish]{babel}
+\begin{document}
+\begin{titlepage}
+\centering
+{\includegraphics[width=0.16\textwidth]{UNAM (2).png}}\par}
+\vspace{1cm}
+\centering
+{\bfseries\Large UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO \par}
+\vspace{0.8cm}
+{\scshape\Large Facultad de Ciencias \par}
+\vspace{0.8cm}
+{\scshape\huge Ensayo del artículo: \par}
+\vspace{0.2cm}
+{\scshape\huge La información es poder...sobre todo si está en una base de datos \par}
+\vspace{0.9cm}
+{\large Equipo R2-Dato: 
+Rosas Rodríguez Carlos Antonio\par}
+\vfill
+{\itshape\large Manejo de datos \par}
+\vfill
+{\itshape\large Profesor Gerardo Avilés Rosas \par}
+\vfill
+{\large Fecha de entrega: 30 de noviembre del 2024\par}
+\vfill
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.045]{Datos.jpg}
+    \caption{Esic (2024) ¿Qué software de análisis de datos utilizan las empresas? https://www.esic.edu/rethink/tecnologia/software-analisis-de-datos-c}
+\end{figure}
+\end{titlepage}
+\begin{center}
+\rule{\textwidth}{0.4pt}
+\Large\textbf{Ensayo del artículo: \par}
+\vspace{0.3cm}
+\Large \textbf{La INFORMACIÓN es PODER... sobre todo si está en una base de datos }\\
+\end{center}
+\rule{\textwidth}{0.4pt}
+\vspace{10pt}
+
+
+
+
+Este artículo nos habla acerca de cómo surgieron las bases, y cómo hemos estado utilizando los datos desde tiempos muy antiguos hasta la actualidad, con toda la evolución que hemos podido apreciar. También aborda el procesamiento de datos, los múltiples lenguajes de consulta, las reglas que estos siguen y, finalmente, menciona algunos puntos relevantes que pueden servir para desarrollar investigación en esta área, así como los avances realizados en México en este campo. Destacando que la correcta gestión de la información a través de bases de datos es crucial para el éxito y la competitividad en el mundo contemporáneo.
+\vspace{0.3cm}
+
+Pienso que el objetivo principal que nos plantea el doctor Hugo Coyote, autor de este artículo, es la importancia primordial de las bases de datos en la adecuada gestión y explotación de la información, ya sea para la operación de organizaciones o para utilizarlas de manera analítica en la toma de decisiones. Estas bases de datos son empleadas desde pequeñas y medianas empresas hasta grandes corporaciones y gobiernos. A través de su análisis, busca convencernos de que realmente \textit{la información es poder}, ya que, como lo podemos ver y vivir en nuestro día a día, entre mayor información tengamos, mejores serán nuestras decisiones. Por ello, se hace énfasis en la capacidad de almacenar, organizar y analizar datos de manera eficiente.
+\vspace{0.3cm}
+
+En relación con la materia de Manejo de Datos, el artículo aterriza los temas vistos en clase, desde las fuentes de organización hasta el manejo de bases de datos SQL. El artículo menciona la organización de datos, algo que vimos con los diferentes tipos de algoritmos y las estructuras lineales y no lineales. También aborda el uso de lenguajes de consulta en SQL, que es precisamente el tema de este proyecto, la optimización en el acceso a la información, e incluso el uso de sistemas manejadores de bases de datos como PostgreSQL. Asimismo, incluye ejemplos de código, en nuestro caso, utilizando Python, que nos sirven para enfrentar los retos que puedan presentarse en el futuro. Además, en la materia se discutió la investigación desarrollada hasta ahora para sacar el mayor provecho de los datos disponibles.
+\vspace{0.3cm}
+
+Algunos de los temas laterales que giran en torno a la importancia de las bases de datos en la organización, almacenamiento y análisis de información en diversas instituciones, incluyen la evolución, los tipos, los estándares, los retos y el desarrollo en México sobre las bases de datos. 
+\vspace{0.3cm}
+
+Sobre la evolución de las bases de datos, se aborda la historia del desarrollo de los sistemas de gestión de bases de datos (DBMS). El concepto de bases de datos surgió para resolver el desorden creado por programas que manejaban sus propios archivos. Esto sigue siendo un tema relevante en la actualidad, especialmente con las investigaciones en ciencia de datos, donde se analizan temas como la optimización de programas, mostrando que esta rama de la programación continuará evolucionando.
+\vspace{0.3cm}
+
+El lenguaje SQL es un componente fundamental en la gestión y análisis de datos. Con un buen uso de SQL, podemos aplicar la información recuperada de las consultas en sectores como marketing, logística y salud, donde las decisiones se basan cada vez más en análisis rigurosos. SQL también ha evolucionado para interactuar con formatos modernos como JSON, utilizados en aplicaciones web actuales, lo que demuestra su constante adaptación a las necesidades tecnológicas.
+\vspace{0.3cm}
+
+Con el crecimiento exponencial de los datos, las técnicas de optimización son cruciales. Las grandes organizaciones utilizan bases de datos altamente optimizadas para manejar millones de transacciones por segundo, garantizando tiempos de respuesta rápidos en aplicaciones como comercio electrónico y búsquedas en internet. Además, la normalización sigue siendo una práctica esencial para garantizar la integridad de los datos, especialmente en sistemas distribuidos basados en la nube, que aplican principios relacionales junto con modelos más flexibles para ofrecer soluciones escalables y de alta disponibilidad.
+\vspace{0.3cm}
+
+SQL sigue siendo amigable para todos, al igual que Python, ya que permite realizar análisis bastante completos sin necesidad de conocimientos avanzados en programación. Esto ha facilitado la adopción de herramientas de \textit{Business Intelligence (BI)}, como Power BI, que utilizan SQL para interactuar con bases de datos. Esto demuestra cómo SQL se adapta continuamente a las nuevas demandas del entorno tecnológico actual.
+\vspace{0.3cm}
+
+En cuanto a su relación con la Actuaría, como se ha mencionado en clase, casi todos los actuarios trabajan con bases de datos, ya sea de manera directa o indirecta, para realizar análisis de probabilidad, estadística y demás materias actuariales. La capacidad de extraer y analizar datos de bases de datos permite a los actuarios sustentar decisiones con información precisa y actualizada. Esto es útil en áreas como seguros, finanzas e investigación de operaciones, ya que el uso de bases de datos les permite desarrollar modelos predictivos para anticipar eventos futuros y evaluar la probabilidad de diferentes escenarios.
+\vspace{0.3cm}
+
+Considero que las bases de datos son muy importantes debido a los numerosos beneficios mencionados a lo largo del ensayo. Estas nos permiten mantener un orden y control al manejar grandes cantidades de información, asegurando la integridad y accesibilidad de los datos, mientras se adaptan constantemente a los avances tecnológicos. Su importancia no solo radica en optimizar procesos y respaldar decisiones estratégicas, sino también en su influencia en todos los ámbitos de la sociedad. Las bases de datos son herramientas esenciales que continuarán impulsando la innovación y el desarrollo en el futuro, transformando la manera en que interactuamos con la información y potenciando nuestro crecimiento en múltiples áreas, lo que resalta la relevancia del curso de Manejo de Datos.
+
+
+\end{document}
